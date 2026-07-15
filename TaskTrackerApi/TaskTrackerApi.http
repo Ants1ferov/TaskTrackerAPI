@@ -1,6 +1,11 @@
-@TaskTrackerApi_HostAddress = http://localhost:5082
+@TaskTrackerApi_HostAddress = http://localhost:5085
 
+### Возвращает список всех задач
 GET {{TaskTrackerApi_HostAddress}}/tasks
 Accept: application/json
 
-###
+### Возвращает задачу по идентификатору (200 ОК)
+GET {{TaskTrackerApi_HostAddress}}/tasks/1
+
+### Возвращает задачу по идентификатору (404 Not Found)
+GET {{TaskTrackerApi_HostAddress}}/tasks/100

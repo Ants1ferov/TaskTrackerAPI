@@ -32,6 +32,16 @@ namespace TaskTrackerApi
                 return Results.Ok(tasks);
             });
 
+            app.MapGet("/tasks/{id}", (int id) =>
+            {
+                var task = tasks.FirstOrDefault(x => x.Id == id);
+
+                if (task is not null)
+                    return Results.Ok(task);
+
+                return Results.NotFound();
+            });
+
             app.Run();
         }
     }
