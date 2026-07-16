@@ -42,6 +42,19 @@ namespace TaskTrackerApi
                 return Results.NotFound();
             });
 
+            app.MapDelete("/tasks/{id}", (int id) =>
+            {
+                var task = tasks.FirstOrDefault(x => x.Id == id);
+
+                if (task is not null)
+                {
+                    tasks.Remove(task);
+                    return Results.NoContent();
+                }
+
+                return Results.NotFound();
+            });
+
             app.Run();
         }
     }
