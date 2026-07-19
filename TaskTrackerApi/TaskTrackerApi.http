@@ -12,3 +12,6 @@ GET {{TaskTrackerApi_HostAddress}}/tasks/100
 
 ### Удаляем задачу по идентификатору (204 No Content)
 DELETE {{TaskTrackerApi_HostAddress}}/tasks/1
+
+### Создаем новую задачу (201 Created)
+POST {{TaskTrackerApi_HostAddress}}/tasks

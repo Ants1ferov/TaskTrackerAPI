@@ -42,6 +42,13 @@ namespace TaskTrackerApi
                 return Results.NotFound();
             });
 
+            app.MapPost("/tasks", () =>
+            {
+                var task = new TaskItem(tasks.Max(x => x.Id) + 1, "Новая задача", false);
+                tasks.Add(task);
+                return Results.Created($"/tasks/{task.Id}", task);
+            });
+
             app.MapDelete("/tasks/{id}", (int id) =>
             {
                 var task = tasks.FirstOrDefault(x => x.Id == id);
