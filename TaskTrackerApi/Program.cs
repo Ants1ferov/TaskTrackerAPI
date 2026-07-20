@@ -61,13 +61,39 @@ namespace TaskTrackerApi
 
                 return Results.NotFound();
             });
+            
+            app.MapPut("/tasks/{id}", (int id, TaskItemRequest updatedTask) =>
+            {
+                var task = tasks.FirstOrDefault(x => x.Id == id);
+
+                if (task is null)
+                    return Results.NotFound();
+
+                task.Title = updatedTask.Title;
+                task.IsCompleted = updatedTask.IsCompleted;
+
+                return Results.Ok(task);
+            });
 
             app.Run();
         }
     }
 
-    public record TaskItem(
-        int Id,
+    public class TaskItem
+    {
+        public TaskItem(int id, string title, bool isCompleted)
+        {
+            Id = id;
+            Title = title;
+            IsCompleted = isCompleted;
+        }
+
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public bool IsCompleted { get; set; }
+    }
+
+    public record TaskItemRequest(
         string Title,
         bool IsCompleted);
 }

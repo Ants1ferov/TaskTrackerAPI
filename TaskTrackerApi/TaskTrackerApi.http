@@ -15,3 +15,11 @@ DELETE {{TaskTrackerApi_HostAddress}}/tasks/1
 
 ### Создаем новую задачу (201 Created)
 POST {{TaskTrackerApi_HostAddress}}/tasks
+
+### Обновляем задачу по идентификатору
+PUT {{TaskTrackerApi_HostAddress}}/tasks/1
+Content-Type: application/json
+{
+  "title": "Изучить ASP.NET Core глубже",
+  "isCompleted": true
+}
